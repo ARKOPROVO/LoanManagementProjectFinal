@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanManagement", "LoanManagement.csproj", "{AFB84970-13C0-460B-AE55-DC8E43B73968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement", "..\UserManagement\UserManagement.csproj", "{B15012CF-1964-455E-B5C6-AD2EF8B919BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFB84970-13C0-460B-AE55-DC8E43B73968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB84970-13C0-460B-AE55-DC8E43B73968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB84970-13C0-460B-AE55-DC8E43B73968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB84970-13C0-460B-AE55-DC8E43B73968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B15012CF-1964-455E-B5C6-AD2EF8B919BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15012CF-1964-455E-B5C6-AD2EF8B919BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15012CF-1964-455E-B5C6-AD2EF8B919BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15012CF-1964-455E-B5C6-AD2EF8B919BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2C5EBD0-56E3-4C01-BAE2-43B35F05BB69}
+	EndGlobalSection
+EndGlobal
