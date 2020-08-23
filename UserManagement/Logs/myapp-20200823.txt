@@ -1,0 +1,4 @@
+2020-08-23T11:16:37.1055734+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-08-23T11:16:37.1827785+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-08-23T11:16:37.3434169+05:30  [INF] Content root path: "D:\FinalProject\LoanManagementProject\UserManagement" (b5d60022)
+2020-08-23T11:16:52.7101982+05:30 8000000a-0000-fc00-b63f-84710c7967bb [INF] ConfirmLogin Controller returned role (f35ba4b9)
