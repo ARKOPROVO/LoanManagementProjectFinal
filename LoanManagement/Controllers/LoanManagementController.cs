@@ -6,6 +6,7 @@ using LoanManagement.Data;
 using LoanManagement.Models;
 using LoanManagement.Repository.Implementation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,10 +18,12 @@ namespace LoanManagement.Controllers
     {
         LoanDBContext _loanDBContext;
         LoanManagementRepository _loanManagementRepository;
-        public LoanManagementController(LoanDBContext loanDBContext)
+        private readonly ILogger _logger;
+        public LoanManagementController(LoanDBContext loanDBContext, ILogger<LoanManagementController> logger)
         {
             _loanDBContext = loanDBContext;
             _loanManagementRepository = new LoanManagementRepository(_loanDBContext);
+            _logger = logger;
         }
         // GET: api/<LoanManagementController>
         //[HttpGet]
@@ -59,37 +62,18 @@ namespace LoanManagement.Controllers
         [Route("searchLoan")]
         public IActionResult GetSearchResult(string borrowerName, int loanId, int loanAmount)
         {
-            //if (loanId != 0)
-            //{
-            //    var loan = _loanDBContext.LoanDetails.Where(p => p.LoanId == loanId);
-            //    if (loan != null)
-            //    {
-            //        return Ok(loan);
-            //    }
-            //}
-
-            //var loans = _loanDBContext.LoanDetails.Where(p => p.LoanId == loanId || p.BorrowerName == borrowerName || p.LoanAmount == loanAmount);
-            //return Ok(_loanDBContext.LoanDetails.Where(p => p.LoanId == loanId || p.BorrowerName == borrowerName || p.LoanAmount == loanAmount));
-            //if(!String.IsNullOrEmpty(borrowerName))
-            //{
-            //    loans = _loanDBContext.LoanDetails.Where(p => p.BorrowerName == borrowerName).ToList();
-            //}
-            //else if(loanId != 0)
-            //{
-            //    loans = _loanDBContext.LoanDetails.Where(p => p.LoanId == loanId).ToList();
-            //}
-            //else if(!String.IsNullOrEmpty(borrowerName) && loanId != 0)
-            //{
-            //    loans = _loanDBContext.LoanDetails.Where(p => p.LoanId == loanId || p.BorrowerName == borrowerName).ToList();
-            //}
-            //else
-            //{
-            //    loans = _loanDBContext.LoanDetails.Where(p => p.LoanAmount == loanAmount).ToList();
-            //}
-
-            //return Ok(loans);
-            var loan = _loanManagementRepository.GetSearchResult(borrowerName, loanId, loanAmount);
-            return Ok(loan);
+            try
+            {
+                var loan = _loanManagementRepository.GetSearchResult(borrowerName, loanId, loanAmount);
+                _logger.LogInformation("GetSearchResult Controller returning search result");
+                return Ok(loan);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogInformation("GetSearchResult Controller exception : "+ex);
+                throw ex;
+            }
+            
         }
 
         // POST /api/LoanManagement/addLoan
@@ -97,17 +81,26 @@ namespace LoanManagement.Controllers
         [Route("addLoan")]
         public IActionResult AddLoan([FromBody] LoanDetail loanDetail)
         {
-            //_loanDBContext.LoanDetails.Add(loanDetail);
-            //_loanDBContext.SaveChanges();
-            var result = _loanManagementRepository.AddLoan(loanDetail);
-            if (result)
+            try
             {
-                return Ok("Successful");
+                var result = _loanManagementRepository.AddLoan(loanDetail);
+                if (result)
+                {
+                    _logger.LogInformation("AddLoan Controller successful");
+                    return Ok("Successful");
+                }
+                else
+                {
+                    _logger.LogInformation("AddLoan Controller unsuccessful");
+                    return Ok("Unsuccessful");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return Ok("Unsuccessful");
+                _logger.LogInformation("AddLoan Controller exception : " + ex);
+                throw ex;
             }
+
 
         }
 
@@ -116,28 +109,27 @@ namespace LoanManagement.Controllers
         [Route("editLoan/{loanId}")]
         public IActionResult EditLoan(int loanId, [FromBody] LoanDetail loanDetail)
         {
-            //var loan = _loanDBContext.LoanDetails.Find(loanId);
-            var result = _loanManagementRepository.EditLoan(loanId, loanDetail);
-            //loan.BorrowerName = loanDetail.BorrowerName;
-            //loan.LoanTerm = loanDetail.LoanTerm;
-            //loan.LoanAmount = loanDetail.LoanAmount;
-            //loan.LoanType = loanDetail.LoanType;
-            //loan.AddressLine1 = loanDetail.AddressLine1;
-            //loan.AddressLine2 = loanDetail.AddressLine2;
-            //loan.City = loanDetail.City;
-            //loan.ZipCode = loanDetail.ZipCode;
-            //loan.LegalInformation = loanDetail.LegalInformation;
-
-            //_loanDBContext.SaveChanges();
-
-            if (result)
+            try
             {
-                return Ok("Successful");
+                var result = _loanManagementRepository.EditLoan(loanId, loanDetail);
+
+                if (result)
+                {
+                    _logger.LogInformation("EditLoan Controller successful");
+                    return Ok("Successful");
+                }
+                else
+                {
+                    _logger.LogInformation("EditLoan Controller unsuccessful");
+                    return Ok("Unsuccessful");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return Ok("Unsuccessful");
+                _logger.LogInformation("EditLoan Controller exception : " + ex);
+                throw ex;
             }
+
         }
 
         // DELETE api/<LoanManagementController>/5
