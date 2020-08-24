@@ -79,7 +79,9 @@ namespace LoanManagement.Controllers
         // POST /api/LoanManagement/addLoan
         [HttpPost]
         [Route("addLoan")]
-        public IActionResult AddLoan([FromBody] LoanDetail loanDetail)
+        //public IActionResult AddLoan([FromBody] LoanDetail loanDetail)
+        public IActionResult AddLoan([FromBody][Bind(nameof(LoanDetail.BorrowerName), nameof(LoanDetail.AddressLine1), nameof(LoanDetail.AddressLine2), nameof(LoanDetail.City),
+            nameof(LoanDetail.ZipCode),nameof(LoanDetail.LegalInformation),nameof(LoanDetail.LoanTerm),nameof(LoanDetail.LoanAmount),nameof(LoanDetail.LoanType))] LoanDetail loanDetail)
         {
             try
             {
@@ -113,7 +115,8 @@ namespace LoanManagement.Controllers
         // PUT /api/LoanManagement/editLoan/{loanId}
         [HttpPut]
         [Route("editLoan/{loanId}")]
-        public IActionResult EditLoan(int loanId, [FromBody] LoanDetail loanDetail)
+        public IActionResult EditLoan(int loanId, [FromBody][Bind(nameof(LoanDetail.BorrowerName), nameof(LoanDetail.AddressLine1), nameof(LoanDetail.AddressLine2), nameof(LoanDetail.City),
+            nameof(LoanDetail.ZipCode),nameof(LoanDetail.LegalInformation),nameof(LoanDetail.LoanTerm),nameof(LoanDetail.LoanAmount),nameof(LoanDetail.LoanType))] LoanDetail loanDetail)
         {
             try
             {
