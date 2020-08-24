@@ -83,6 +83,12 @@ namespace LoanManagement.Controllers
         {
             try
             {
+                if(String.IsNullOrEmpty(loanDetail.BorrowerName) || loanDetail.LoanAmount == 0 || loanDetail.LoanTerm == 0 || String.IsNullOrEmpty(loanDetail.LoanType)
+                    || String.IsNullOrEmpty(loanDetail.AddressLine1) || String.IsNullOrEmpty(loanDetail.City) || String.IsNullOrEmpty(loanDetail.ZipCode))
+                {
+                    _logger.LogInformation("AddLoan Controller unsuccessful due to improper information");
+                    return Ok("Not proper or enough information");
+                }
                 var result = _loanManagementRepository.AddLoan(loanDetail);
                 if (result)
                 {
@@ -111,6 +117,12 @@ namespace LoanManagement.Controllers
         {
             try
             {
+                if (String.IsNullOrEmpty(loanDetail.BorrowerName) || loanDetail.LoanAmount == 0 || loanDetail.LoanTerm == 0 || String.IsNullOrEmpty(loanDetail.LoanType)
+                    || String.IsNullOrEmpty(loanDetail.AddressLine1) || String.IsNullOrEmpty(loanDetail.City) || String.IsNullOrEmpty(loanDetail.ZipCode))
+                {
+                    _logger.LogInformation("EditLoan Controller unsuccessful due to improper information");
+                    return Ok("Not proper or enough information");
+                }
                 var result = _loanManagementRepository.EditLoan(loanId, loanDetail);
 
                 if (result)
