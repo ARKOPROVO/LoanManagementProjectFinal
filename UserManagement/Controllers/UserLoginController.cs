@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using UserManagement.Data;
 using UserManagement.Repository.Implementation;
@@ -18,11 +20,13 @@ namespace UserManagement.Controllers
         UserDBContext _userDBContext;
         UserLoginRepository _userLoginRepository;
         private readonly ILogger _logger;
-        public UserLoginController(UserDBContext userDBContext, ILogger<UserLoginController> logger)
+        IConfiguration _config;
+        public UserLoginController(UserDBContext userDBContext, ILogger<UserLoginController> logger, IConfiguration config)
         {
             _userDBContext = userDBContext;
-            _userLoginRepository = new UserLoginRepository(_userDBContext);
+            _config = config;
             _logger = logger;
+            _userLoginRepository = new UserLoginRepository(_userDBContext,_config);
         }
         // GET: api/<UserLoginController>
         [HttpGet]
@@ -34,33 +38,44 @@ namespace UserManagement.Controllers
         // GET api/<UserLoginController>/5
         [HttpGet]
         [Route("login")]
+        [AllowAnonymous]
         public IActionResult ConfirmLogin(string userid, string password)
         {
+            //try
+            //{
+
+            //    var user = _userLoginRepository.ConfirmLogin(userid, password);
+            //    if (user == null)
+            //    {
+            //        _logger.LogInformation("ConfirmLogin Controller returned User doesn't exist");
+            //        return NotFound("User doesn't exist");
+            //    }
+            //    else if (user.Password != password)
+            //    {
+            //        _logger.LogInformation("ConfirmLogin Controller returned password doesn't match");
+            //        return BadRequest("password doesn't match");
+            //    }
+            //    else
+            //    {
+            //        _logger.LogInformation("ConfirmLogin Controller returned role");
+            //        return Ok(user.Role);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogInformation("Caught exception" + ex + "in ConfirmLogin API controller");
+            //    return (IActionResult)ex;
+            //}
             try
             {
-                //var user = _loanDBContext.Users.Find(userid);
-                //var user = _userDBContext.Users.FirstOrDefault(p => p.UserId == userid);
-                var user = _userLoginRepository.ConfirmLogin(userid, password);
-                if (user == null)
-                {
-                    _logger.LogInformation("ConfirmLogin Controller returned User doesn't exist");
-                    return NotFound("User doesn't exist");
-                }
-                else if (user.Password != password)
-                {
-                    _logger.LogInformation("ConfirmLogin Controller returned password doesn't match");
-                    return BadRequest("password doesn't match");
-                }
-                else
-                {
-                    _logger.LogInformation("ConfirmLogin Controller returned role");
-                    return Ok(user.Role);
-                }
+                var tokenString = _userLoginRepository.ConfirmLogin(userid, password);
+                _logger.LogInformation("ConfirmLogin Controller returned token");
+                return Ok(new { token = tokenString });
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("Caught exception" + ex + "in ConfirmLogin API controller");
-                return (IActionResult)ex;
+                _logger.LogInformation("Caught exception" + ex.Message + "in ConfirmLogin API controller");
+                throw ex;
             }
         }
     }

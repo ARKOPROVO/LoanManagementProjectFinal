@@ -8,6 +8,6 @@ namespace UserManagement.Repository.Interface
 {
     interface IUserLoginRepository
     {
-        public User ConfirmLogin(string userid, string password);
+        public string ConfirmLogin(string userid, string password);
     }
 }
