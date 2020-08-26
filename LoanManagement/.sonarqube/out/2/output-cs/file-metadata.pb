@@ -1,0 +1,16 @@
+e
+\D:\FinalProject\LoanManagementProject\LoanManagement\Controllers\LoanManagementController.csutf-8f
+]D:\FinalProject\LoanManagementProject\LoanManagement\Controllers\WeatherForecastController.csutf-8S
+JD:\FinalProject\LoanManagementProject\LoanManagement\Data\LoanDBContext.csutf-8f
+]D:\FinalProject\LoanManagementProject\LoanManagement\Migrations\20200822141820_LoanRelated.csutf-8q
+fD:\FinalProject\LoanManagementProject\LoanManagement\Migrations\20200822141820_LoanRelated.Designer.csutf-8h
+]D:\FinalProject\LoanManagementProject\LoanManagement\Migrations\LoanDBContextModelSnapshot.csutf-8R
+ID:\FinalProject\LoanManagementProject\LoanManagement\Models\LoanDetail.csutf-8H
+?D:\FinalProject\LoanManagementProject\LoanManagement\Program.csutf-8s
+jD:\FinalProject\LoanManagementProject\LoanManagement\Repository\Implementation\LoanManagementRepository.csutf-8o
+fD:\FinalProject\LoanManagementProject\LoanManagement\Repository\Interface\ILoanManagementRepository.csutf-8H
+?D:\FinalProject\LoanManagementProject\LoanManagement\Startup.csutf-8P
+GD:\FinalProject\LoanManagementProject\LoanManagement\WeatherForecast.csutf-8†
+{D:\FinalProject\LoanManagementProject\LoanManagement\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.csutf-8v
+kD:\FinalProject\LoanManagementProject\LoanManagement\obj\Debug\netcoreapp3.1\LoanManagement.AssemblyInfo.csutf-8‰
+~D:\FinalProject\LoanManagementProject\LoanManagement\obj\Debug\netcoreapp3.1\LoanManagement.MvcApplicationPartsAssemblyInfo.csutf-8

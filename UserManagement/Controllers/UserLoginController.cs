@@ -36,8 +36,9 @@ namespace UserManagement.Controllers
         }
 
         // GET api/<UserLoginController>/5
-        [HttpGet]
-        [Route("login")]
+        //[HttpGet("login/{userid}/{password}")]
+        [HttpGet()]
+        [Route("login/{userid}/{password}")]
         [AllowAnonymous]
         public IActionResult ConfirmLogin(string userid, string password)
         {

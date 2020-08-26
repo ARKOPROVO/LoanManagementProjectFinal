@@ -1,0 +1,54 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/LoanManagement/searchLoan",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44368
+        }
+      ],
+      "UpstreamPathTemplate": "/LoanManage",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/LoanManagement/addLoan",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44368
+        }
+      ],
+      "UpstreamPathTemplate": "/LoanManageAdd",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/LoanManagement/editLoan/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44368
+        }
+      ],
+      "UpstreamPathTemplate": "/LoanManageEdit/{id}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/UserLogin/login/{userid}/{password}",
+      //"DownstreamPathTemplate": "/api/UserLogin/login/userid={userid}&password={password}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44325
+        }
+      ],
+      "UpstreamPathTemplate": "/UserLogin/{userid}/{password}",
+      //"UpstreamPathTemplate": "/UserLogin/userid={userid}&password={password}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    }
+  ]
+}
