@@ -36,6 +36,10 @@ namespace UserManagement
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
             services.AddSingleton(Configuration);
+            //services.AddCors(c =>
+            //{
+            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +70,8 @@ namespace UserManagement
             {
                 endpoints.MapControllers();
             });
+
+            //app.UseCors(options => options.AllowAnyOrigin());
         }
     }
 }

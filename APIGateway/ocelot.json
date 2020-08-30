@@ -9,7 +9,7 @@
           "Port": 44368
         }
       ],
-      "UpstreamPathTemplate": "/LoanManage",
+      "UpstreamPathTemplate": "/LoanManageSearch",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {

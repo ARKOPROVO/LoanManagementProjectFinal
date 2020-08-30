@@ -43,15 +43,25 @@ namespace LoanManagement
                 x.AssumeDefaultVersionWhenUnspecified = true;
                 x.ReportApiVersions = true;
             });
+            //services.AddCors(); // Make sure you call this previous to AddMvc
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+           
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
@@ -61,19 +71,26 @@ namespace LoanManagement
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            app.UseRouting();
+            app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
+            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
 
-            app.UseRouting();
+            
 
             app.UseAuthorization();
 
-            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
+            
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            
+
+            app.UseMvc();
+
         }
     }
 }

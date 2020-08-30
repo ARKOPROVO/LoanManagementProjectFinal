@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LoanManagement.Data;
 using LoanManagement.Models;
 using LoanManagement.Repository.Implementation;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace LoanManagement.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("MyPolicy")]
     [ApiController]
     public class LoanManagementController : ControllerBase
     {
