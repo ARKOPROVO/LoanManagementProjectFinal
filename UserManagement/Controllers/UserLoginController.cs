@@ -69,9 +69,11 @@ namespace UserManagement.Controllers
             //}
             try
             {
-                var tokenString = _userLoginRepository.ConfirmLogin(userid, password);
+                var tokenModel = _userLoginRepository.ConfirmLogin(userid, password);
                 _logger.LogInformation("ConfirmLogin Controller returned token");
-                return Ok(new { token = tokenString });
+                //return Ok(new { token = tokenString });
+                return Ok(tokenModel);
+                //return tokenString;
             }
             catch (Exception ex)
             {

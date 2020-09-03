@@ -28,16 +28,19 @@ namespace UserManagement.Repository.Implementation
 
         //    return user;
         //}
-        public string ConfirmLogin(string userid, string password)
+        public LoginResponse ConfirmLogin(string userid, string password)
         {
+            var model = new LoginResponse();
             var user = _userDBContext.Users.FirstOrDefault(p => p.UserId == userid);
-            if (user != null)
+            if (user != null && user.Password == password)
             {
                 var tokenString = GenerateJSONWebToken(user);
+                model.UserRole = user.Role;
+                model.Token = tokenString;
                 //response = Ok(new { token = tokenString });
-                return tokenString;
+                return model;
             }
-            return "";
+            return model;
         }
         private string GenerateJSONWebToken(User userInfo)
         {

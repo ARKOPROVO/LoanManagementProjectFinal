@@ -1,0 +1,3 @@
+2020-08-30T11:55:05.2390359+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-08-30T11:55:05.3219734+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2020-08-30T11:55:05.3481036+05:30  [INF] Content root path: "D:\FinalProject\LoanManagementProject\UserManagement" (b5d60022)
