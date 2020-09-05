@@ -94,15 +94,18 @@ namespace LoanManagement.Controllers
                     return Ok("Not proper or enough information");
                 }
                 var result = _loanManagementRepository.AddLoan(loanDetail);
+                var message = new MessageModel();
                 if (result)
                 {
                     _logger.LogInformation("AddLoan Controller successful");
-                    return Ok("Successful");
+                    message.message = "Successful";
+                    return Ok(message);
                 }
                 else
                 {
                     _logger.LogInformation("AddLoan Controller unsuccessful");
-                    return Ok("Unsuccessful");
+                    message.message = "Unsuccessful";
+                    return Ok(message);
                 }
             }
             catch(Exception ex)
@@ -129,16 +132,18 @@ namespace LoanManagement.Controllers
                     return Ok("Not proper or enough information");
                 }
                 var result = _loanManagementRepository.EditLoan(loanId, loanDetail);
-
+                var message = new MessageModel();
                 if (result)
                 {
                     _logger.LogInformation("EditLoan Controller successful");
-                    return Ok("Successful");
+                    message.message = "Successful";
+                    return Ok(message);
                 }
                 else
                 {
                     _logger.LogInformation("EditLoan Controller unsuccessful");
-                    return Ok("Unsuccessful");
+                    message.message = "Unsuccessful";
+                    return Ok(message);
                 }
             }
             catch(Exception ex)
